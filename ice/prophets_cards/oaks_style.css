@@ -38,7 +38,7 @@ h1 {
     box-sizing: border-box;
     margin: 0 auto 10px;
 }
-.prophet-dates {
+.dates {
     color: #FFFFFF;
     font-size: 18px;
     text-align: left;
@@ -48,7 +48,7 @@ h1 {
 }
 .quote {
     color: #FFD783;
-    font-family: "Brush Script MT";
+    font-family: "Nanum Brush Script";
     font-size: 18px; 
     line-height: 1.7;
     margin: 12px 0 20px;
