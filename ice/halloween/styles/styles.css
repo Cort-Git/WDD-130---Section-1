@@ -1,0 +1,20 @@
+nav {
+    background-color:orange;
+}
+nav:hover{
+    background-color:black;
+    color:white;
+}
+body {
+    background-color: orangered;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+main {
+    text-align: center;
+}
+footer {
+    background-color: orange;
+}
