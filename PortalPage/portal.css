@@ -1,0 +1,55 @@
+/* List of colors */
+  /*--Ash Grey: #AFD0BF
+  --Grey Olive: #808F87
+  --Honey Dew: #E2EFDE
+  --Faded Copper: #9B7E46;
+  --Sunlit Clay: F4B266*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #AFD0BF;
+}
+#logo-link{
+  display: flex;
+  width: 400px;
+  height: 200px;
+  margin: 0px;
+  padding: 0px;
+}
+nav a {
+  background-color:#808F87;
+  margin: 10px;
+  padding:10px;
+  text-align: center;
+}
+nav a:hover {
+  background-color:#E2EFDE;
+}
+main {
+  background-color: #E2EFDE;
+}
+
+#ice-img {
+  width: 50%;
+  height: auto;
+  text-align: center;
+}
+#burrito-img {
+  width: 450px;
+  height: 600px;
+  text-align: center;
+}
+footer {
+   background-color: #9B7E46;
+   text-align: center;
+   margin: 10px;
+   padding: 10px;
+}
+p {
+  font-size: 20px;
+}
