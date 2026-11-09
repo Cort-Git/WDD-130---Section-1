@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoundIt | Lost & Found</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <a id="logo link" href="index.html">
+            <img class="logo" src="FoundIt_logo.png" alt="FoundIt Logo">
+    </a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#items">Browse Items</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Lost something?</h1>
+    <h2>Let's help you find it.</h2>
+    <p>
+      Search for missing belongings or report something
+      you've found. Together, we can get items back home.
+    </p>
+
+    <form class="search-bar" id="searchForm">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Try keys, wallet, backpack..."
+        aria-label="Search lost and found items"
+      >
+      <button class="search-button" type="submit">
+        Search Items
+      </button>
+    </form>
+
+    <div class="actions">
+      <button class="lost-button" type="button"
+        onclick="reportItem('lost')">
+        + Report Lost Item
+      </button>
+      <button class="found-button" type="button"
+        onclick="reportItem('found')">
+        + Report Found Item
+      </button>
+    </div>
+  </section>
+
+  <main>
+    <section id="items">
+      <div class="section-heading">
+        <h2>Recently Reported Items</h2>
+        <p>See if someone has reported your missing item.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-button active"
+          data-filter="all">All Items</button>
+        <button class="filter-button"
+          data-filter="lost">Lost</button>
+        <button class="filter-button"
+          data-filter="found">Found</button>
+      </div>
+
+      <div class="items-grid" id="itemsGrid">
+
+        <article class="item-card"
+          data-status="lost"
+          data-search="car keys black library">
+          <div class="item-image">
+            <img src="Keys.JPG" alt="Blue car keys">
+          </div>
+          <div class="item-info">
+            <span class="status lost">Lost</span>
+            <h3>Car Keys</h3>
+            <p>📍 Library · Oct 18</p>
+          </div>
+        </article>
+
+        <article class="item-card"
+          data-status="found"
+          data-search="blue backpack student center">
+          <div class="item-image">
+            <img src="Backpack.png" alt="Blue backpack">
+          </div>
+          <div class="item-info">
+            <span class="status found">Found</span>
+            <h3>Blue Backpack</h3>
+            <p>📍 Student Center · Oct 18</p>
+          </div>
+        </article>
+
+        <article class="item-card"
+          data-status="lost"
+          data-search="house key wooden table">
+          <div class="item-image">
+            <img src="House_Key.png" alt="Silver house key">
+          </div>
+          <div class="item-info">
+            <span class="status lost">Lost</span>
+            <h3>House Key</h3>
+            <p>📍 Parking Lot · Oct 17</p>
+          </div>
+        </article>
+
+        <article class="item-card"
+          data-status="found"
+          data-search="wallet brown cafeteria">
+          <div class="item-image">
+            <img src="Wallet.png" alt="Wallet">
+          </div>
+          <div class="item-info">
+            <span class="status found">Found</span>
+            <h3>Wallet</h3>
+            <p>📍 Cafeteria · Oct 16</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="callout" id="about">
+      <h2>Every item has a way home. ❤️</h2>
+      <p>
+        Found something that doesn't belong to you?
+        Post it here and help reunite someone with
+        an item they thought was gone forever.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>FoundIt — A community-powered lost and found</p>
+    <p>&copy; 2026 FoundIt. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const cards = [...document.querySelectorAll(".item-card")];
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    let activeFilter = "all";
+
+    function updateItems() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const matchesSearch =
+          card.dataset.search.includes(query) ||
+          card.innerText.toLowerCase().includes(query);
+
+        const matchesFilter =
+          activeFilter === "all" ||
+          card.dataset.status === activeFilter;
+
+        const visible = matchesSearch && matchesFilter;
+        card.hidden = !visible;
+
+        if (visible) visibleCount++;
+      });
+
+      let emptyMessage = document.getElementById("emptyMessage");
+
+      if (!visibleCount) {
+        if (!emptyMessage) {
+          emptyMessage = document.createElement("p");
+          emptyMessage.id = "emptyMessage";
+          emptyMessage.className = "empty-message";
+          emptyMessage.textContent =
+            "No matching items found. Try another search.";
+
+          document.getElementById("itemsGrid")
+            .appendChild(emptyMessage);
+        }
+      } else if (emptyMessage) {
+        emptyMessage.remove();
+      }
+    }
+
+    searchForm.addEventListener("submit", event => {
+      event.preventDefault();
+      updateItems();
+
+      document.getElementById("items")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+
+    searchInput.addEventListener("input", updateItems);
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+
+        filterButtons.forEach(item =>
+          item.classList.toggle("active", item === button)
+        );
+
+        updateItems();
+      });
+    });
+
+    function reportItem(type) {
+      alert(
+        "The " + type + " item reporting form will go here. " +
+        "This is a placeholder for the prototype."
+      );
+    }
+  </script>
+</body>
+</html>
+
+    
